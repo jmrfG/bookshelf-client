@@ -4,8 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-package.json
-.gitignore
+.package.json
+./package.json
+
 # testing
 /coverage
 
