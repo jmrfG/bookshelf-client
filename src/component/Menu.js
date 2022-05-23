@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { RegisterBook } from '../templates/RegisterBook';
+import BookTable from '../templates/BookGrid';
 
 
 function TabPanel(props) {
@@ -53,7 +54,7 @@ export default function MenuTabs() {
                 <RegisterBook />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <BookTable />
             </TabPanel>
             <TabPanel value={value} index={2}>
                 Item Three
