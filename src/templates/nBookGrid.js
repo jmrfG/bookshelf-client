@@ -9,14 +9,14 @@ const columns = [
     {
         field: 'page', headerName: 'Pagina Atual', width: 200, editable: true
     },
-    { field: 'total_pages', headerName: 'Total de Paginas', width: 200 },
+    { field: 'total_pages', headerName: 'Total de Paginas', width: 200, editable: true },
 ];
 
-export default function BookTableConclusos() {
+export default function NBookGrid() {
     const [books, setBooks] = useState([])
 
     useEffect(() => {
-        fetch("/get_all_books_conclusos", {
+        fetch("/get_all_books", {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

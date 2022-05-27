@@ -4,11 +4,10 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { RegisterBook } from '../templates/RegisterBook';
-import BookTable from '../templates/BookGrid';
 import BookTableEspera from '../templates/BookGridEmEspera';
 import BookTableAtivos from '../templates/BookGridAtivos';
 import BookTableConclusos from '../templates/BookGridConclusos';
-
+import NBookGrid from '../templates/nBookGrid';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -59,7 +58,7 @@ export default function MenuTabs() {
                 <RegisterBook />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <BookTable />
+                <NBookGrid />
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <BookTableEspera />
