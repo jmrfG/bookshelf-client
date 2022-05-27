@@ -1,11 +1,13 @@
 import { Container } from "@mui/system";
 import React, { useState } from "react";
-import { Button, Form, Input } from "semantic-ui-react";
+import { Form, Input } from "semantic-ui-react";
+import Button from '@mui/material/Button';
 
 
-export const RegisterBook = ({ onUpdate }) => {
+export const RegisterBook = () => {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
+    const [pages, setPages] = useState("");
 
     const postData = async () => {
         if (title !== "" && author !== "") {
@@ -19,7 +21,6 @@ export const RegisterBook = ({ onUpdate }) => {
             })
             if (res.ok) {
                 console.log("Response OK");
-                onUpdate(book);
                 setTitle("");
                 setAuthor("");
             }
@@ -39,11 +40,13 @@ export const RegisterBook = ({ onUpdate }) => {
                     <Input placeholder="Book author" value={author} onChange={e => setAuthor(e.target.value)} />
                 </Form.Field>
                 <Form.Field>
-                    <Button onClick={postData}>Register</Button>
+                    <Input placeholder="Number of pages" value={pages} onChange={e => setPages(e.target.value)} />
+                </Form.Field>
+                <Form.Field>
+                    <Button variant="outlined" onClick={postData}>Register</Button>
                 </Form.Field>
             </Form>
         </Container>
-
     )
 
 }

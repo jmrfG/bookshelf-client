@@ -5,6 +5,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { RegisterBook } from '../templates/RegisterBook';
 import BookTable from '../templates/BookGrid';
+import BookTableEspera from '../templates/BookGridEmEspera';
+import BookTableAtivos from '../templates/BookGridAtivos';
+import BookTableConclusos from '../templates/BookGridConclusos';
 
 
 function TabPanel(props) {
@@ -47,7 +50,9 @@ export default function MenuTabs() {
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Register" {...a11yProps(0)} />
                     <Tab label="Complete" {...a11yProps(1)} />
-                    <Tab label="Filtered" {...a11yProps(2)} />
+                    <Tab label="Em Espera" {...a11yProps(2)} />
+                    <Tab label="Em Leitura" {...a11yProps(3)} />
+                    <Tab label="Conclusos" {...a11yProps(4)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
@@ -57,7 +62,13 @@ export default function MenuTabs() {
                 <BookTable />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                <BookTableEspera />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <BookTableAtivos />
+            </TabPanel>
+            <TabPanel value={value} index={4}>
+                <BookTableConclusos />
             </TabPanel>
         </Box>
     );

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
 
-export default function BookTable() {
+export default function BookTableAtivos() {
     const [books, setBooks] = useState([])
 
     useEffect(() => {
-        fetch("/get_all_books", {
+        fetch("/get_all_books_ativos", {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -21,11 +22,11 @@ export default function BookTable() {
 
     const columns = [
         { field: 'b_id', headerName: 'ID', width: 70, hide: true },
-        { field: 'author', headerName: 'Author', width: 400 },
+        { field: 'author', headerName: 'Author', width: 200 },
         { field: 'title', headerName: 'Title', width: 400 },
-        { field: 'status', headerName: 'Status', width: 400 },
-        { field: 'pagina', headerName: 'Pagina Atual', width: 400 },
-        { field: 't_pagina', headerName: 'Total de Paginas', width: 400 },
+        { field: 'status', headerName: 'Status', width: 400, hide: true },
+        { field: 'pagina', headerName: 'Pagina Atual', width: 200, renderCell: (e) => <Button variant='containerd'>{e.value}</Button> },
+        { field: 't_pagina', headerName: 'Total de Paginas', width: 200 },
     ];
     return (
         <div style={{ height: 400, width: '100%' }}>
