@@ -11,7 +11,8 @@ export const RegisterBook = () => {
 
     const postData = async () => {
         if (title !== "" && author !== "") {
-            const book = { title, author }
+            const book = { title, author, pages }
+            console.log(book)
             const res = await fetch("/add_book", {
                 method: 'POST',
                 headers: {

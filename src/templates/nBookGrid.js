@@ -1,19 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid } from "@mui/x-data-grid";
 
-const columns = [
-    { field: 'b_id', headerName: 'ID', width: 70, hide: true },
-    { field: 'author', headerName: 'Author', width: 200, editable: true },
-    { field: 'title', headerName: 'Title', width: 400 },
-    { field: 'status', headerName: 'Status', width: 400, hide: true },
-    {
-        field: 'page', headerName: 'Pagina Atual', width: 200, editable: true
-    },
-    { field: 'total_pages', headerName: 'Total de Paginas', width: 200, editable: true },
-];
+import { DataGrid } from "@mui/x-data-grid";
+import { Button } from '@mui/material';
+
+
 
 export default function NBookGrid() {
     const [books, setBooks] = useState([])
+    const [selectionModel, setSelectionModel] = React.useState([]);
+
+    const columns = [
+        { field: 'b_id', headerName: 'ID', width: 70, hide: true },
+        {
+            field: "delete",
+            width: 75,
+            sortable: false,
+            disableColumnMenu: true,
+            renderHeader: () => {
+                return (
+                    <Button
+                        onClick={() => {
+                            const selectedIDs = selectionModel;
+                            // you can call an API to delete the selected IDs
+                            // and get the latest results after the deletion
+                            // then call setRows() to update the data locally here
+                            deleteBooks(selectedIDs);
+                            setBooks([...books]);
+                        }}
+                    >
+                        Delete
+                    </Button>
+                );
+            }
+        },
+        { field: 'author', headerName: 'Author', width: 200, editable: true },
+        { field: 'title', headerName: 'Title', width: 400 },
+        { field: 'status', headerName: 'Status', width: 400, hide: true },
+        {
+            field: 'page', headerName: 'Pagina Atual', width: 200, editable: true
+        },
+        { field: 'total_pages', headerName: 'Total de Paginas', width: 200, editable: true },
+    ];
+
+
 
     useEffect(() => {
         fetch("/get_all_books", {
@@ -50,6 +79,23 @@ export default function NBookGrid() {
         }
     }
 
+    const deleteBooks = async (params) => {
+        const id = params;
+        const res = await fetch("/delete_book", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(id)
+        })
+        if (res.ok) {
+            console.log("Response OK");
+        } else {
+            console.log("It took me 2 hours to do this.")
+        }
+    }
+
+
     return (
         <div style={{ height: 400, width: "100%" }}>
             <DataGrid
@@ -62,6 +108,9 @@ export default function NBookGrid() {
                 disableSelectionOnClick
                 onCellEditCommit={(props, event) => {
                     updateBook(props);
+                }}
+                onSelectionModelChange={(id) => {
+                    setSelectionModel(id);
                 }}
             />
         </div>
