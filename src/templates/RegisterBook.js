@@ -24,6 +24,7 @@ export const RegisterBook = () => {
                 console.log("Response OK");
                 setTitle("");
                 setAuthor("");
+                setPages("");
             }
         }
         else {
@@ -44,7 +45,7 @@ export const RegisterBook = () => {
                     <Input placeholder="Number of pages" value={pages} onChange={e => setPages(e.target.value)} />
                 </Form.Field>
                 <Form.Field>
-                    <Button variant="outlined" onClick={postData}>Register</Button>
+                    <Button variant="outlined" onClick={postData}>Add New Book</Button>
                 </Form.Field>
             </Form>
         </Container>

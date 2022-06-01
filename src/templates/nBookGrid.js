@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from '@mui/material';
 
@@ -20,15 +19,16 @@ export default function NBookGrid() {
                 return (
                     <Button
                         onClick={() => {
-                            const selectedIDs = selectionModel;
+                            const IDS = selectionModel;
+                            const selectedIDs = new Set(selectionModel);
                             // you can call an API to delete the selected IDs
                             // and get the latest results after the deletion
                             // then call setRows() to update the data locally here
-                            deleteBooks(selectedIDs);
-                            setBooks([...books]);
+                            deleteBooks(IDS);
+                            setBooks((r) => r.filter((x) => !selectedIDs.has(x.b_id)));
                         }}
                     >
-                        Delete
+                        Del
                     </Button>
                 );
             }
@@ -97,7 +97,7 @@ export default function NBookGrid() {
 
 
     return (
-        <div style={{ height: 400, width: "100%" }}>
+        <div style={{ height: 500, width: "100%" }}>
             <DataGrid
                 rows={books}
                 columns={columns}
