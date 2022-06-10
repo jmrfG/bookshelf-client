@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 export default function NBookGrid() {
     const [books, setBooks] = useState([])
     const [selectionModel, setSelectionModel] = React.useState([]);
+    const [pageSize, setPageSize] = React.useState(5);
 
     const columns = [
         { field: 'b_id', headerName: 'ID', width: 70, hide: true },
@@ -97,13 +98,15 @@ export default function NBookGrid() {
 
 
     return (
-        <div style={{ height: 500, width: "100%" }}>
+        <div style={{ height: "750px", width: "100%" }}>
             <DataGrid
                 rows={books}
                 columns={columns}
-                pageSize={5}
+                pageSize={pageSize}
                 getRowId={(row) => row.b_id}
-                rowsPerPageOptions={[5]}
+                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                rowsPerPageOptions={[5, 10, 20]}
+                pagination
                 checkboxSelection
                 disableSelectionOnClick
                 onCellEditCommit={(props, event) => {
