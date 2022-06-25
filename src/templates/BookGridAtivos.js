@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function BookTableAtivos() {
     const [books, setBooks] = useState([])
@@ -9,6 +10,13 @@ export default function BookTableAtivos() {
 
     const columns = [
         { field: 'b_id', headerName: 'ID', width: 70, hide: true },
+        { field: 'author', headerName: 'Author', width: 200, editable: true },
+        { field: 'title', headerName: 'Title', width: 400 },
+        { field: 'status', headerName: 'Status', width: 400, hide: true },
+        {
+            field: 'page', headerName: 'Pagina Atual', width: 200, editable: true
+        },
+        { field: 'total_pages', headerName: 'Total de Paginas', width: 200, editable: true },
         {
             field: "delete",
             width: 75,
@@ -27,18 +35,11 @@ export default function BookTableAtivos() {
                             setBooks((r) => r.filter((x) => !selectedIDs.has(x.b_id)));
                         }}
                     >
-                        Del
+                        <DeleteIcon />
                     </Button>
                 );
             }
-        },
-        { field: 'author', headerName: 'Author', width: 200, editable: true },
-        { field: 'title', headerName: 'Title', width: 400 },
-        { field: 'status', headerName: 'Status', width: 400, hide: true },
-        {
-            field: 'page', headerName: 'Pagina Atual', width: 200, editable: true
-        },
-        { field: 'total_pages', headerName: 'Total de Paginas', width: 200, editable: true },
+        }
     ];
 
     const deleteBooks = async (params) => {

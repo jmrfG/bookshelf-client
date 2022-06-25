@@ -49,9 +49,9 @@ export default function MenuTabs() {
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Register" {...a11yProps(0)} />
                     <Tab label="Complete" {...a11yProps(1)} />
-                    <Tab label="Em Espera" {...a11yProps(2)} />
-                    <Tab label="Em Leitura" {...a11yProps(3)} />
-                    <Tab label="Conclusos" {...a11yProps(4)} />
+                    <Tab label="Books on hold" {...a11yProps(2)} />
+                    <Tab label="Reading" {...a11yProps(3)} />
+                    <Tab label="Books read" {...a11yProps(4)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
